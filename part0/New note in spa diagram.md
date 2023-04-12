@@ -8,5 +8,5 @@
         server-->>browser: HTTP status code 201 created
         deactivate server
 
-        Note right of browser: The server does not ask for a redirect
+        Note left of server: The server does not ask for a redirect
 ```
