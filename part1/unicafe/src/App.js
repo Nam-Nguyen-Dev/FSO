@@ -5,18 +5,50 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [total, setTotal] = useState(0)
+  const [average, setAverage] = useState(0)
+  const [positive, setPositive] = useState(0)
+
+  const incrementGood = () => {
+    setGood(good+1)
+    setTotal(total+1)
+    console.log(good,bad,neutral,total)
+    setAverage((good+1-bad)/(total+1))
+    setPositive((good+1)/(total+1))
+  }
+  const incrementNeutral = () => {
+    setNeutral(neutral+1)
+    setTotal(total+1)
+    setAverage((good-bad)/(total+1))
+    setPositive((good)/(total+1))
+  }
+  const incrementBad = () => {
+    setBad(bad+1)
+    setTotal(total+1)
+    setAverage((good-bad-1)/(total+1))
+    setPositive((good)/(total+1))
+  }
 
   return (
     <div>
       <h1>give feedback</h1>
-      <button onClick={()=>setGood(good+1)}>good</button>
-      <button onClick={()=>setNeutral(neutral+1)}>netural</button>
-      <button onClick={()=>setBad(bad+1)}>bad</button>
+      <Button name="good" handleClick={incrementGood}></Button>
+      <Button name="neutral" handleClick={incrementNeutral}></Button>
+      <Button name="bad" handleClick={incrementBad}></Button>
       <h2>statistics</h2>
       <span>good </span>{good}<br></br>
       <span>neutral </span>{neutral}<br></br>
       <span>bad </span>{bad}<br></br>
+      <span>all </span>{total}<br></br>
+      <span>average </span>{average}<br></br>
+      <span>positive </span>{positive}<br></br>
     </div>
+  )
+}
+
+const Button = props => {
+  return(
+      <button onClick={props.handleClick}>{props.name}</button>
   )
 }
 
