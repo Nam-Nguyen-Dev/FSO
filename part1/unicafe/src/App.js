@@ -36,12 +36,7 @@ const App = () => {
       <Button name="neutral" handleClick={incrementNeutral}></Button>
       <Button name="bad" handleClick={incrementBad}></Button>
       <h2>statistics</h2>
-      <Statistics name='good' count={good}></Statistics><br></br>
-      <Statistics name='neutral' count={neutral}></Statistics><br></br>
-      <Statistics name='bad' count={bad}></Statistics><br></br>
-      <Statistics name='total' count={total}></Statistics><br></br>
-      <Statistics name='average' count={average}></Statistics><br></br>
-      <Statistics name='positive' count={positive}></Statistics><br></br>
+      <Statistics countGood={good} countBad={bad} countNeutral={neutral} average={average} positive={positive} total={total}></Statistics>
     </div>
   )
 }
@@ -53,9 +48,23 @@ const Button = props => {
 }
 
 const Statistics = props => {
-  return (
-    <span>{props.name} {props.count}</span>
-  )
+  if (props.total){
+    return (
+      <div>
+        <p>good {props.countGood} </p>
+        <p>bad {props.countBad}</p>
+        <p>neutral {props.countNeutral}</p>
+        <p>total {props.total}</p>
+        <p>average {props.average}</p>
+        <p>positive {props.positive}</p>
+      </div>
+     )
+  } else {
+    return (
+      <p>No feedback given</p>
+    )
+  }
+
 }
 
 export default App
