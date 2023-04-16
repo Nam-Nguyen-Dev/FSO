@@ -47,16 +47,22 @@ const Button = props => {
   )
 }
 
+const StatisticLine = props => {
+  return (
+    <p>{props.name} {props.value}</p>
+  )
+}
+
 const Statistics = props => {
   if (props.total){
     return (
       <div>
-        <p>good {props.countGood} </p>
-        <p>bad {props.countBad}</p>
-        <p>neutral {props.countNeutral}</p>
-        <p>total {props.total}</p>
-        <p>average {props.average}</p>
-        <p>positive {props.positive}</p>
+        <StatisticLine name='good' value={props.countGood}></StatisticLine>
+        <StatisticLine name='neutral' value={props.countNeutral}></StatisticLine>
+        <StatisticLine name='bad' value={props.countBad}></StatisticLine>
+        <StatisticLine name='total' value={props.total}></StatisticLine>
+        <StatisticLine name='average' value={props.average}></StatisticLine>
+        <StatisticLine name='positive' value={props.positive}></StatisticLine>
       </div>
      )
   } else {
