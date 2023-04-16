@@ -36,12 +36,12 @@ const App = () => {
       <Button name="neutral" handleClick={incrementNeutral}></Button>
       <Button name="bad" handleClick={incrementBad}></Button>
       <h2>statistics</h2>
-      <span>good </span>{good}<br></br>
-      <span>neutral </span>{neutral}<br></br>
-      <span>bad </span>{bad}<br></br>
-      <span>all </span>{total}<br></br>
-      <span>average </span>{average}<br></br>
-      <span>positive </span>{positive}<br></br>
+      <Statistics name='good' count={good}></Statistics><br></br>
+      <Statistics name='neutral' count={neutral}></Statistics><br></br>
+      <Statistics name='bad' count={bad}></Statistics><br></br>
+      <Statistics name='total' count={total}></Statistics><br></br>
+      <Statistics name='average' count={average}></Statistics><br></br>
+      <Statistics name='positive' count={positive}></Statistics><br></br>
     </div>
   )
 }
@@ -49,6 +49,12 @@ const App = () => {
 const Button = props => {
   return(
       <button onClick={props.handleClick}>{props.name}</button>
+  )
+}
+
+const Statistics = props => {
+  return (
+    <span>{props.name} {props.count}</span>
   )
 }
 
