@@ -12,21 +12,20 @@ const App = () => {
   const incrementGood = () => {
     setGood(good+1)
     setTotal(total+1)
-    console.log(good,bad,neutral,total)
     setAverage((good+1-bad)/(total+1))
-    setPositive((good+1)/(total+1))
+    setPositive((good+1)/(total+1)*100)
   }
   const incrementNeutral = () => {
     setNeutral(neutral+1)
     setTotal(total+1)
     setAverage((good-bad)/(total+1))
-    setPositive((good)/(total+1))
+    setPositive((good)/(total+1)*100)
   }
   const incrementBad = () => {
     setBad(bad+1)
     setTotal(total+1)
     setAverage((good-bad-1)/(total+1))
-    setPositive((good)/(total+1))
+    setPositive((good)/(total+1)*100)
   }
 
   return (
@@ -49,21 +48,30 @@ const Button = props => {
 
 const StatisticLine = props => {
   return (
-    <p>{props.name} {props.value}</p>
+    <tr>
+      <td>
+        {props.name}
+      </td>
+      <td>
+        {props.value}
+      </td>
+    </tr>
   )
 }
 
 const Statistics = props => {
   if (props.total){
     return (
-      <div>
-        <StatisticLine name='good' value={props.countGood}></StatisticLine>
-        <StatisticLine name='neutral' value={props.countNeutral}></StatisticLine>
-        <StatisticLine name='bad' value={props.countBad}></StatisticLine>
-        <StatisticLine name='total' value={props.total}></StatisticLine>
-        <StatisticLine name='average' value={props.average}></StatisticLine>
-        <StatisticLine name='positive' value={props.positive}></StatisticLine>
-      </div>
+      <table>
+        <tbody>
+            <StatisticLine name='good' value={props.countGood}></StatisticLine>
+            <StatisticLine name='neutral' value={props.countNeutral}></StatisticLine>
+            <StatisticLine name='bad' value={props.countBad}></StatisticLine>
+            <StatisticLine name='all' value={props.total}></StatisticLine>
+            <StatisticLine name='average' value={props.average}></StatisticLine>
+            <StatisticLine name='positive' value={props.positive+'%'}></StatisticLine>
+        </tbody>
+      </table>
      )
   } else {
     return (
