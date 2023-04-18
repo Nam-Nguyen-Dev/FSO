@@ -13,12 +13,21 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(Array(8).fill(0))
+  
 
   const randomNumber = () => setSelected(Math.floor(Math.random()*8))
+  const incrementVote = () => {
+    const newVotes = [...votes]
+    newVotes[selected]++
+    setVotes(newVotes)
+  }
 
   return (
     <div>
-      {anecdotes[selected]}
+      {anecdotes[selected]}<br></br>
+      <p>has {votes[selected]} votes</p>
+      <Button name="vote" handleClick={incrementVote}></Button>
       <Button name="next anecdote" handleClick={randomNumber}></Button>
     </div>
   )
@@ -26,9 +35,7 @@ const App = () => {
 
 const Button = props => {
   return(
-    <div>
       <button onClick={props.handleClick}>{props.name}</button>
-    </div>
   )
 }
 
