@@ -14,7 +14,7 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array(8).fill(0))
-  const maxVotesIndex = votes.indexOf(Math.max(...votes))
+  const [maxVotesIndex, setMaxVotesIndex] = useState(0)
   
 
   const randomNumber = () => setSelected(Math.floor(Math.random()*8))
@@ -22,6 +22,8 @@ const App = () => {
     const newVotes = [...votes]
     newVotes[selected]++
     setVotes(newVotes)
+
+    setMaxVotesIndex(newVotes.indexOf(Math.max(...newVotes)))
   }
 
   return (
