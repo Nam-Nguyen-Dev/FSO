@@ -1,18 +1,17 @@
+
 const Course = ({courses}) => {
-
-    const total = courses.reduce(e => e.parts.reduce((acc,c) => acc + c.exercises, 0))
-
-    return (
-
-        <div>
-            <CourseName name={courses[0].name} />
-            <CourseExercises parts={courses[0]} />
-            <Total total={courses[0]} />
-            <CourseName name={courses[1].name} />
-            <CourseExercises parts={courses[1]} />
-            <Total total={courses[1]} />
-        </div>
+    return(
+        courses.map( course => {
+            return(
+                <div key={course.id}>
+                    <CourseName name={course.name}></CourseName>
+                    <CourseExercises parts={course.parts}></CourseExercises>
+                    <Total parts={course.parts}></Total>
+                </div>           
+            )
+        }) 
     )
+    
 }
 
 const CourseName = ( {name} ) => {
@@ -21,16 +20,16 @@ const CourseName = ( {name} ) => {
     )
 }
 
-const CourseExercises = props => {
+const CourseExercises = ({parts}) => {
 
     return (
-        props.parts.parts.map(e => <p key={e.id}>{e.name} {e.exercises}</p>)
+        parts.map(e => <p key={e.id}>{e.name} {e.exercises}</p>)
     )
 }
 
-const Total = props => {
+const Total = ({parts}) => {
 
-    let total = props.total.parts.reduce((acc,c) => acc + c.exercises, 0)
+    let total = parts.reduce((acc,c) => acc + c.exercises, 0)
 
     return (
         <p><b>total of {total} exercises</b></p>
