@@ -12,12 +12,6 @@ const Course = ({courses}) => {
             <CourseExercises parts={courses[1]} />
             <Total total={courses[1]} />
         </div>
-
-        /* <div>
-            <h1>{course[0].name}</h1>
-            {course.forEach(e => e.parts.map(e => <p key={e.id}>{e.name} {e.exercises}</p>))}
-            <p><b>total of {total} exercises</b></p>
-        </div> */
     )
 }
 
@@ -35,10 +29,9 @@ const CourseExercises = props => {
 }
 
 const Total = props => {
-    console.log('TotalProps: ', props)
 
     let total = props.total.parts.reduce((acc,c) => acc + c.exercises, 0)
-    console.log('Total: ', total)
+
     return (
         <p><b>total of {total} exercises</b></p>
     )
