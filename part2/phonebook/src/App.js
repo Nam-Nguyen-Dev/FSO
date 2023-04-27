@@ -8,6 +8,11 @@ const App = () => {
 
   const addName = event => {
     event.preventDefault()
+    const foundObject = persons.find(obj => Object.values(obj).includes(newName))
+    if (foundObject){
+      alert(`${newName} is already added to phonebook`)
+    }
+
     const personObject = {
       name: newName,
       id: persons.length + 1,
