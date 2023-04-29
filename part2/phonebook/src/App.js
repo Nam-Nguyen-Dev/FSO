@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import PersonForm from './components/PersonsForm'
 import Persons from './components/Persons'
+import Filter from './components/Filter'
 
 
 const App = () => {
@@ -48,14 +49,12 @@ const App = () => {
     ? persons
     : persons.filter(person => person.name.toLowerCase().includes(newFilter.toLowerCase()))
 
-  console.log(personsToShow)
+
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with <input value={newFilter} onChange={handleFilterChange}/>
-      </div>
+      <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}></Filter>
       <h2>add a new</h2>
       <PersonForm addName={addName} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange}></PersonForm>
       <h2>Numbers</h2>
