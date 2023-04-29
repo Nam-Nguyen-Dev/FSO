@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PersonForm from './components/PersonsForm'
+import Persons from './components/Persons'
 
 
 const App = () => {
@@ -47,6 +48,8 @@ const App = () => {
     ? persons
     : persons.filter(person => person.name.toLowerCase().includes(newFilter.toLowerCase()))
 
+  console.log(personsToShow)
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -57,7 +60,7 @@ const App = () => {
       <PersonForm addName={addName} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange}></PersonForm>
       <h2>Numbers</h2>
       <ul>
-      {personsToShow.map(person => <li key={person.id}>{person.name} {person.number}</li>)}
+      <Persons personsToShow={personsToShow}></Persons>
       </ul>
       
     </div>
